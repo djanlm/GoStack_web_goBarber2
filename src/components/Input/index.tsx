@@ -6,9 +6,11 @@ import React, {
   useRef,
 } from 'react'; // InputHTMLAttributes importa todos os atributos do input no html
 import { IconBaseProps } from 'react-icons';
+import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-import { Container } from './styles';
+import Tooltip from '../Tooltip';
+import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string; // faz com que o atributo name seja obrigatório
@@ -47,7 +49,7 @@ const Input: React.FC<InputProps> = (
   }, [fieldName, registerField]);
 
   return (
-    <Container isFilled={isFilled} isFocused={isFocused}>
+    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
       {
         /** Só mostra a tag Icon se vier um icon como parametro */
         Icon && <Icon size={20} />
@@ -59,6 +61,12 @@ const Input: React.FC<InputProps> = (
         ref={inputRef}
         {...rest}
       />
+
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color="#c53030" size={20} />
+        </Error>
+      )}
     </Container>
   );
 };
