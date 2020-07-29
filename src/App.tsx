@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 // import SignIn from './pages/Signin';
-import SignIn from './pages/Signin';
+
 import GlobalStyle from './styles/global';
 
 import AppProvider from './hooks';
