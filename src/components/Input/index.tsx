@@ -13,11 +13,12 @@ import { Container, Error } from './styles';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   name: string; // faz com que o atributo name seja obrigatório
+  containerStyle?: object;
   icon: React.ComponentType<IconBaseProps>;
 }
 
 const Input: React.FC<InputProps> = (
-  { name, icon: Icon, ...rest }, // icon: Icon renomeia o icon para que o react entenda que Icon é um componente
+  { name, containerStyle = {}, icon: Icon, ...rest }, // icon: Icon renomeia o icon para que o react entenda que Icon é um componente
 ) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -48,7 +49,12 @@ const Input: React.FC<InputProps> = (
   }, [fieldName, registerField]);
 
   return (
-    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+    <Container
+      style={containerStyle}
+      isErrored={!!error}
+      isFilled={isFilled}
+      isFocused={isFocused}
+    >
       {
         /** Só mostra a tag Icon se vier um icon como parametro */
         Icon && <Icon size={20} />
