@@ -54,6 +54,7 @@ const Input: React.FC<InputProps> = (
       isErrored={!!error}
       isFilled={isFilled}
       isFocused={isFocused}
+      data-testid="input-container"
     >
       {
         /** Só mostra a tag Icon se vier um icon como parametro */
